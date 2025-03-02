@@ -12,6 +12,7 @@ import Testimonials from "@/components/Testimonials";
 import SocialLinks from "@/components/SocialLinks";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ui/ParticleBackground";
+import Cofounders from "@/components/Cofounders";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <main>
         <Hero />
         <About />
+        <Cofounders />
         <Judges />
         <Schedule />
         <Sponsors />

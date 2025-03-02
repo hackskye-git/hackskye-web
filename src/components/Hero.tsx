@@ -21,7 +21,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20">
             <span className="text-sm font-medium text-gray-300">
-              <span className="text-hackathon-green font-bold">48-HOUR</span> CODING MARATHON • BANGALORE, INDIA
+              <span className="text-hackathon-green font-bold">48-HOUR</span> CODING MARATHON • BANGALORE & CHANDIGARH, INDIA
             </span>
           </div>
 

@@ -11,7 +11,7 @@ const Footer = () => {
         {/* Top section with links */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">Hackskye 2025</h3>
+            <h3 className="text-xl font-bold mb-4 text-white">Hackskye 2026</h3>
             <p className="text-gray-400 mb-4">
               Building a nationwide hackathon brand that is affordable, youth-driven, and scalable.
             </p>
@@ -84,11 +84,11 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="text-gray-400">
                 <span className="block text-hackathon-blue">Email:</span>
-                hello@hackskye2025.com
+                hackskyehackathon@gmail.com
               </li>
               <li className="text-gray-400">
                 <span className="block text-hackathon-blue">Location:</span>
-                Bangalore, India
+                Bangalore & Chandigarh, India
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-hackathon-green transition-colors">
@@ -101,7 +101,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Subscribe</h3>
             <p className="text-gray-400 mb-4">
-              Stay updated with the latest news and announcements from Hackskye 2025.
+              Stay updated with the latest news and announcements from Hackskye 2026.
             </p>
             <form className="space-y-2">
               <input 
