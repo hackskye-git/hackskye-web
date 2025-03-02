@@ -7,9 +7,8 @@ import ParticleBackground from './ui/ParticleBackground';
 import { Rocket, DollarSign } from 'lucide-react';
 
 const Hero = () => {
-  // Setting target date to 10 months from now (as a placeholder for 2025)
-  const targetDate = new Date();
-  targetDate.setMonth(targetDate.getMonth() + 10);
+  // Setting target date to June 6, 2026
+  const targetDate = new Date("June 6, 2026 09:00:00");
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 pb-16">
@@ -33,7 +32,7 @@ const Hero = () => {
               as="span"
               className="block"
             />
-            <span className="block mt-1 text-glow text-white">HACKATHON 2025</span>
+            <span className="block mt-1 text-glow text-white">HACKATHON 2026</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -49,6 +48,7 @@ const Hero = () => {
               size="lg"
               className="sm:w-auto w-full"
               icon={<Rocket size={20} />}
+              href="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
             >
               REGISTER NOW
             </GlowingButton>

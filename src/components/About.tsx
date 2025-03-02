@@ -51,13 +51,13 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16">
           <FeatureCard
             icon={<MapPin size={24} className="text-hackathon-purple" />}
-            title="Bangalore 2025"
+            title="Bangalore 2026"
             description="Our first flagship event launches in Bangalore, the Silicon Valley of India."
           />
           <FeatureCard
             icon={<Flag size={24} className="text-hackathon-purple" />}
             title="Nation-wide Mission"
-            description="Beginning in Bangalore with plans to expand to Delhi, Mumbai and Hyderabad by 2027."
+            description="Beginning in Bangalore with plans to expand to Delhi, Mumbai and Hyderabad by 2028."
           />
           <FeatureCard
             icon={<Users size={24} className="text-hackathon-purple" />}
@@ -67,7 +67,7 @@ const About = () => {
           <FeatureCard
             icon={<TrendingUp size={24} className="text-hackathon-purple" />}
             title="Scaling Vision"
-            description="Our roadmap includes 10+ cities by 2030, becoming India's leading hackathon network."
+            description="Our roadmap includes 10+ cities by 2031, becoming India's leading hackathon network."
           />
         </div>
 

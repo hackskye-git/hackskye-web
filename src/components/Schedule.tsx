@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import AnimatedText from './ui/AnimatedText';
 import { cn } from '@/lib/utils';
@@ -7,7 +6,7 @@ import { Calendar, Clock, Users, Video } from 'lucide-react';
 const scheduleData = [
   {
     day: 'Day 1',
-    date: 'April 1, 2025',
+    date: 'June 6, 2026',
     events: [
       {
         time: '09:00 AM - 10:00 AM',
@@ -55,7 +54,7 @@ const scheduleData = [
   },
   {
     day: 'Day 2',
-    date: 'April 2, 2025',
+    date: 'June 7, 2026',
     events: [
       {
         time: 'All Day',
@@ -89,7 +88,7 @@ const scheduleData = [
   },
   {
     day: 'Day 3',
-    date: 'April 3, 2025',
+    date: 'June 8, 2026',
     events: [
       {
         time: '12:00 PM',

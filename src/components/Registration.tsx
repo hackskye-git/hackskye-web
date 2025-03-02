@@ -9,6 +9,7 @@ interface RegistrationCardProps {
   title: string;
   description: string;
   buttonText: string;
+  buttonLink?: string;
   icon: React.ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary' | 'accent';
@@ -17,7 +18,8 @@ interface RegistrationCardProps {
 const RegistrationCard = ({ 
   title, 
   description, 
-  buttonText, 
+  buttonText,
+  buttonLink,
   icon, 
   className,
   variant = 'primary'
@@ -34,7 +36,12 @@ const RegistrationCard = ({
       <h3 className="text-xl font-barlow font-bold text-white mb-3">{title}</h3>
       <p className="text-gray-400 mb-6 flex-grow">{description}</p>
       
-      <GlowingButton variant={variant} size="md" className="w-full mt-auto">
+      <GlowingButton 
+        variant={variant} 
+        size="md" 
+        className="w-full mt-auto"
+        href={buttonLink}
+      >
         {buttonText}
       </GlowingButton>
     </div>
@@ -54,13 +61,13 @@ const Registration = () => {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-barlow font-bold mb-6">
             <AnimatedText
-              text="Register for Hackskye 2025"
+              text="Register for Hackskye 2026"
               variant="gradient"
               as="span"
             />
           </h2>
           <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-            Whether you're a participant, mentor, judge, or volunteer, there's a place for you at Hackskye 2025.
+            Whether you're a participant, mentor, judge, or volunteer, there's a place for you at Hackskye 2026.
             Join us and be part of India's most innovative hackathon experience.
           </p>
         </div>
@@ -70,6 +77,7 @@ const Registration = () => {
             title="Participate as Hacker"
             description="Register to join as a participant in the hackathon. Build innovative projects, compete for prizes, and connect with fellow tech enthusiasts."
             buttonText="Register Now"
+            buttonLink="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
             icon={<Users size={24} className="text-hackathon-purple" />}
             variant="secondary"
           />
@@ -77,6 +85,7 @@ const Registration = () => {
             title="Apply as Mentor/Judge"
             description="Share your expertise as a mentor or judge. Guide participants, provide feedback, and help select the winning projects."
             buttonText="Apply Now"
+            buttonLink="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
             icon={<UserCheck size={24} className="text-hackathon-purple" />}
             variant="primary"
           />
@@ -84,6 +93,7 @@ const Registration = () => {
             title="Join as Volunteer"
             description="Be part of the organizing team. Help with logistics, participant support, and make the event run smoothly."
             buttonText="Volunteer"
+            buttonLink="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
             icon={<UserPlus size={24} className="text-hackathon-purple" />}
             variant="accent"
           />
@@ -102,7 +112,7 @@ const Registration = () => {
                     Event Dates
                   </h4>
                   <p className="text-gray-300">
-                    April 1-3, 2025 (48-hour hackathon)
+                    June 6-8, 2026 (48-hour hackathon)
                   </p>
                 </div>
                 
@@ -141,12 +151,17 @@ const Registration = () => {
             <div className="flex flex-col justify-center">
               <div className="bg-hackathon-black/50 backdrop-blur-sm rounded-xl p-6 border border-hackathon-green/20 shadow-neon-green">
                 <h4 className="text-xl font-barlow font-bold text-hackathon-green mb-4">
-                  Register before March 1, 2025
+                  Register before May 1, 2026
                 </h4>
                 <p className="text-gray-300 mb-6">
                   Early bird registrations get a special discount, exclusive workshops access, and premium swag items.
                 </p>
-                <GlowingButton variant="secondary" size="lg" className="w-full">
+                <GlowingButton 
+                  variant="secondary" 
+                  size="lg" 
+                  className="w-full"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
+                >
                   Register Now
                 </GlowingButton>
               </div>
