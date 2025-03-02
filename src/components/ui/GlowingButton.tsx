@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -8,6 +7,7 @@ interface GlowingButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
+  href?: string;
 }
 
 const GlowingButton = ({ 
@@ -16,6 +16,7 @@ const GlowingButton = ({
   children, 
   className, 
   icon,
+  href,
   ...props 
 }: GlowingButtonProps) => {
   const variantClasses = {
@@ -30,14 +31,31 @@ const GlowingButton = ({
     lg: "py-3 px-6 text-lg"
   };
 
+  const baseClasses = cn(
+    "rounded-md font-barlow font-bold relative transition-all duration-300 active:translate-y-1 flex items-center justify-center gap-2",
+    variantClasses[variant],
+    sizeClasses[size],
+    className
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={baseClasses}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {icon && <span className="inline-flex items-center">{icon}</span>}
+        <span>{children}</span>
+        <span className="absolute inset-0 rounded-md bg-white/10 opacity-0 transition-opacity hover:opacity-100"></span>
+      </a>
+    );
+  }
+
   return (
     <button
-      className={cn(
-        "rounded-md font-barlow font-bold relative transition-all duration-300 active:translate-y-1 flex items-center justify-center gap-2",
-        variantClasses[variant],
-        sizeClasses[size],
-        className
-      )}
+      className={baseClasses}
       {...props}
     >
       {icon && <span className="inline-flex items-center">{icon}</span>}
