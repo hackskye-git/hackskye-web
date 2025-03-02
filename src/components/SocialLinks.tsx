@@ -1,5 +1,5 @@
 
-import { Twitter, Instagram, Linkedin, Github, Discord, WhatsApp } from "lucide-react";
+import { Twitter, Instagram, Linkedin, Github, MessageSquare, Phone } from "lucide-react";
 
 const SocialLinks = () => {
   return (
@@ -92,7 +92,7 @@ const SocialLinks = () => {
                   rel="noopener noreferrer" 
                   className="flex items-center p-4 bg-hackathon-dark-gray rounded-lg hover:bg-hackathon-light-gray transition-colors"
                 >
-                  <Discord className="text-hackathon-purple mr-4" size={32} />
+                  <MessageSquare className="text-hackathon-purple mr-4" size={32} />
                   <div>
                     <h4 className="font-bold text-white">Join our Discord</h4>
                     <p className="text-sm text-gray-400">Connect with participants, mentors and organizers</p>
@@ -105,7 +105,7 @@ const SocialLinks = () => {
                   rel="noopener noreferrer" 
                   className="flex items-center p-4 bg-hackathon-dark-gray rounded-lg hover:bg-hackathon-light-gray transition-colors"
                 >
-                  <WhatsApp className="text-hackathon-green mr-4" size={32} />
+                  <Phone className="text-hackathon-green mr-4" size={32} />
                   <div>
                     <h4 className="font-bold text-white">WhatsApp Group</h4>
                     <p className="text-sm text-gray-400">Get real-time updates and announcements</p>
