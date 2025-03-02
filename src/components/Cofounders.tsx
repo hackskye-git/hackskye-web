@@ -94,7 +94,7 @@ const Cofounders = () => {
           <CofounderCard 
             name="Rishul Chanana"
             role="Co-Founder & CEO"
-            image="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952"
+            image="https://framerusercontent.com/images/Sl6vvnucbd1lurivx7LuHH9qxyI.png"
             bio="Tech enthusiast and entrepreneur with a passion for building scalable platforms that empower India's next generation of innovators."
             github="https://github.com/"
             linkedin="https://linkedin.com/in/"
@@ -104,7 +104,7 @@ const Cofounders = () => {
           <CofounderCard 
             name="Yash Kulkarni"
             role="Co-Founder & CTO" 
-            image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+            image="https://framerusercontent.com/images/0Vy9IvevGaZqKtpfKw1I0XaRow.png"
             bio="Software developer and hackathon veteran with a vision to create accessible tech education opportunities across India."
             github="https://github.com/"
             linkedin="https://linkedin.com/in/"
