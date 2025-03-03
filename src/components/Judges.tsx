@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import AnimatedText from './ui/AnimatedText';
 import { cn } from '@/lib/utils';
-import { Linkedin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Linkedin, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 // Mock data for judges
 const judgesData = [
@@ -66,35 +66,37 @@ interface JudgeCardProps {
   judge: typeof judgesData[0];
   isActive: boolean;
   onClick: () => void;
+  index: number;
 }
 
-const JudgeCard = ({ judge, isActive, onClick }: JudgeCardProps) => {
+const JudgeCard = ({ judge, isActive, onClick, index }: JudgeCardProps) => {
   return (
     <div 
       className={cn(
-        "h-full rounded-xl relative group transition-all duration-300 transform cursor-pointer",
+        "h-full rounded-xl relative transition-all duration-300 transform cursor-pointer animate-fadeIn overflow-hidden",
         isActive 
-          ? "bg-hackathon-dark-gray border-2 border-hackathon-blue scale-105 shadow-neon-blue" 
-          : "bg-hackathon-dark-gray/50 border border-hackathon-purple/20 hover:border-hackathon-purple/40"
+          ? "glass-card shadow-glow-secondary border-hackathon-secondary scale-105" 
+          : "glass-card hover:shadow-glow-primary border-hackathon-border"
       )}
       onClick={onClick}
+      style={{ animationDelay: `${index * 100}ms` }}
     >
       <div className="h-full p-5 flex flex-col">
         <div className="relative w-full pt-[100%] mb-4 rounded-lg overflow-hidden">
           <img 
             src={judge.image} 
             alt={judge.name} 
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-hackathon-dark-gray via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-hackathon-card-dark via-transparent to-transparent"></div>
         </div>
         
         <h3 className="text-xl font-barlow font-bold text-white mb-1">{judge.name}</h3>
-        <p className="text-hackathon-blue font-medium text-sm mb-2">{judge.role}</p>
-        <p className="text-gray-400 text-sm mb-4">{judge.company}</p>
+        <p className="text-hackathon-secondary font-medium text-sm mb-1">{judge.role}</p>
+        <p className="text-hackathon-muted text-sm mb-4">{judge.company}</p>
         
         {isActive && (
-          <p className="text-gray-300 text-sm mb-4 animate-fadeIn line-clamp-3">
+          <p className="text-white/80 text-sm mb-4 animate-fadeIn line-clamp-3">
             {judge.bio}
           </p>
         )}
@@ -104,17 +106,13 @@ const JudgeCard = ({ judge, isActive, onClick }: JudgeCardProps) => {
             href={judge.linkedin} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-hackathon-blue transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-hackathon-muted hover:text-hackathon-secondary transition-colors"
           >
             <Linkedin size={16} />
             <span>LinkedIn</span>
           </a>
         </div>
       </div>
-      
-      {!isActive && (
-        <div className="absolute inset-0 bg-hackathon-black/5 group-hover:bg-transparent transition-colors"></div>
-      )}
     </div>
   );
 };
@@ -122,7 +120,7 @@ const JudgeCard = ({ judge, isActive, onClick }: JudgeCardProps) => {
 const Judges = () => {
   const [activeJudge, setActiveJudge] = useState<number | null>(null);
   const [startIndex, setStartIndex] = useState(0);
-  const judgesPerPage = Math.min(judgesData.length, 6);
+  const judgesPerPage = 3; 
   
   const handlePrev = () => {
     setStartIndex((prev) => Math.max(0, prev - judgesPerPage));
@@ -137,63 +135,74 @@ const Judges = () => {
   const canGoNext = startIndex + judgesPerPage < judgesData.length;
 
   return (
-    <section id="judges" className="relative">
-      <div className="container mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-block mb-3 px-3 py-1 rounded-full bg-hackathon-blue/10 backdrop-blur-sm border border-hackathon-blue/20">
-            <span className="text-sm font-medium text-hackathon-green">ELITE PANEL</span>
+    <section id="judges" className="relative container mx-auto px-4 py-16 md:py-24">
+      {/* Background elements */}
+      <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-hackathon-primary/10 blur-3xl pointer-events-none"></div>
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-hackathon-secondary/10 blur-3xl pointer-events-none"></div>
+      
+      <div className="relative z-10">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <div className="inline-block mb-3 px-4 py-2 rounded-full bg-hackathon-card-dark/80 backdrop-blur-sm border border-hackathon-border animate-fadeIn">
+            <span className="text-xs md:text-sm font-medium text-white flex items-center justify-center gap-2">
+              <Star size={14} className="text-hackathon-secondary" />
+              <span>ELITE PANEL</span>
+            </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-barlow font-bold mb-6">
+          
+          <h2 className="text-3xl md:text-5xl font-barlow font-bold mb-6 tracking-tight animate-slideUp" style={{ animationDelay: '100ms' }}>
             <AnimatedText
               text="Meet Our Judges"
-              variant="glow"
+              variant="gradient"
               as="span"
+              delay={200}
             />
           </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto text-lg">
+          
+          <p className="text-hackathon-muted text-base md:text-lg animate-slideUp" style={{ animationDelay: '200ms' }}>
             Our panel features industry leaders, startup founders, and academic experts 
             who will evaluate your innovations and provide valuable feedback.
           </p>
         </div>
 
-        <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {visibleJudges.map((judge) => (
-              <JudgeCard 
-                key={judge.id}
-                judge={judge}
-                isActive={activeJudge === judge.id}
-                onClick={() => setActiveJudge(activeJudge === judge.id ? null : judge.id)}
-              />
-            ))}
-          </div>
-          
-          <div className="flex justify-center gap-4 mt-8">
-            <button 
-              onClick={handlePrev}
-              disabled={!canGoPrev}
-              className={cn(
-                "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300", 
-                canGoPrev 
-                  ? "bg-hackathon-dark-gray text-white hover:bg-hackathon-purple hover:shadow-neon-purple" 
-                  : "bg-hackathon-dark-gray/50 text-gray-500 cursor-not-allowed"
-              )}
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button 
-              onClick={handleNext}
-              disabled={!canGoNext}
-              className={cn(
-                "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300", 
-                canGoNext 
-                  ? "bg-hackathon-dark-gray text-white hover:bg-hackathon-purple hover:shadow-neon-purple" 
-                  : "bg-hackathon-dark-gray/50 text-gray-500 cursor-not-allowed"
-              )}
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {visibleJudges.map((judge, index) => (
+            <JudgeCard 
+              key={judge.id}
+              judge={judge}
+              isActive={activeJudge === judge.id}
+              onClick={() => setActiveJudge(activeJudge === judge.id ? null : judge.id)}
+              index={index}
+            />
+          ))}
+        </div>
+        
+        <div className="flex justify-center gap-4 mt-10 animate-fadeIn" style={{ animationDelay: '500ms' }}>
+          <button 
+            onClick={handlePrev}
+            disabled={!canGoPrev}
+            className={cn(
+              "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300", 
+              canGoPrev 
+                ? "glass-card text-white hover:text-hackathon-secondary hover:shadow-glow-primary" 
+                : "bg-hackathon-card-dark/50 text-hackathon-muted cursor-not-allowed"
+            )}
+            aria-label="Previous judges"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button 
+            onClick={handleNext}
+            disabled={!canGoNext}
+            className={cn(
+              "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300", 
+              canGoNext 
+                ? "glass-card text-white hover:text-hackathon-secondary hover:shadow-glow-primary" 
+                : "bg-hackathon-card-dark/50 text-hackathon-muted cursor-not-allowed"
+            )}
+            aria-label="Next judges"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
       </div>
     </section>

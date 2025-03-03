@@ -1,61 +1,68 @@
 
 import React, { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
 
 interface CountdownTimerProps {
   targetDate: Date;
   className?: string;
 }
 
-const CountdownTimer = ({ targetDate, className }: CountdownTimerProps) => {
-  const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate, className }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
+    const calculateTimeLeft = () => {
+      const difference = +targetDate - +new Date();
+      
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
 
-      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((difference % (1000 * 60)) / 1000);
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
 
-      setDays(d);
-      setHours(h);
-      setMinutes(m);
-      setSeconds(s);
-    }, 1000);
-
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, [targetDate]);
 
-  const formatTime = (time: number) => {
-    return time < 10 ? `0${time}` : `${time}`;
-  };
-
-  // Array of time units for rendering
-  const timeUnits = [
-    { value: days, label: 'Days' },
-    { value: hours, label: 'Hours' },
-    { value: minutes, label: 'Minutes' },
-    { value: seconds, label: 'Seconds' }
-  ];
-
   return (
-    <div className={cn("flex flex-wrap justify-center gap-3 sm:gap-5", className)}>
-      {timeUnits.map(({ value, label }, index) => (
-        <div key={label} className="flex flex-col items-center">
-          <div className="countdown-digit animate-pulse">
-            {formatTime(value)}
-          </div>
-          <div className="countdown-label">
-            {label}
-          </div>
+    <div className={`${className}`}>
+      <h3 className="text-hackathon-secondary font-medium mb-4 text-center text-sm md:text-base">
+        Registration closes in:
+      </h3>
+      
+      <div className="flex justify-center gap-4">
+        <div className="glass-card px-3 py-4 w-16 md:w-24 flex flex-col items-center hover-glow-primary">
+          <div className="text-2xl md:text-4xl font-barlow font-bold text-white">{timeLeft.days}</div>
+          <div className="text-xs text-hackathon-muted mt-1">Days</div>
         </div>
-      ))}
+        
+        <div className="glass-card px-3 py-4 w-16 md:w-24 flex flex-col items-center hover-glow-secondary">
+          <div className="text-2xl md:text-4xl font-barlow font-bold text-white">{timeLeft.hours}</div>
+          <div className="text-xs text-hackathon-muted mt-1">Hours</div>
+        </div>
+        
+        <div className="glass-card px-3 py-4 w-16 md:w-24 flex flex-col items-center hover-glow-accent">
+          <div className="text-2xl md:text-4xl font-barlow font-bold text-white">{timeLeft.minutes}</div>
+          <div className="text-xs text-hackathon-muted mt-1">Minutes</div>
+        </div>
+        
+        <div className="glass-card px-3 py-4 w-16 md:w-24 flex flex-col items-center hover-glow-success">
+          <div className="text-2xl md:text-4xl font-barlow font-bold text-white">{timeLeft.seconds}</div>
+          <div className="text-xs text-hackathon-muted mt-1">Seconds</div>
+        </div>
+      </div>
     </div>
   );
 };

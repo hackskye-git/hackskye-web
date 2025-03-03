@@ -5,51 +5,68 @@ import CountdownTimer from './ui/CountdownTimer';
 import GlowingButton from './ui/GlowingButton';
 import AnimatedText from './ui/AnimatedText';
 import ParticleBackground from './ui/ParticleBackground';
-import { Rocket, DollarSign } from 'lucide-react';
+import { Rocket, DollarSign, Calendar, MapPin, Users } from 'lucide-react';
 
 const Hero = () => {
   // Setting target date to June 6, 2026
   const targetDate = new Date("June 6, 2026 09:00:00");
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-16 pb-16 md:pt-20 px-4">
+    <section id="home" className="min-h-screen relative flex flex-col justify-center pt-16 pb-16 md:pt-20 px-4">
       <ParticleBackground />
       
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 subtle-grid opacity-10 pointer-events-none"></div>
 
-      <div className="relative z-10 container mx-auto text-center">
+      {/* Hero content */}
+      <div className="relative z-10 container mx-auto">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-block mb-4 md:mb-6 px-3 py-1.5 rounded-full bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20">
-            <span className="text-xs md:text-sm font-medium text-gray-300">
-              <span className="text-hackathon-green font-bold">48-HOUR</span> CODING MARATHON • BANGALORE & CHANDIGARH, INDIA
+          {/* Label */}
+          <div className="inline-block mb-6 px-4 py-2 rounded-full bg-hackathon-card-dark/80 backdrop-blur-sm border border-hackathon-border animate-fadeIn">
+            <span className="text-xs md:text-sm font-medium text-white flex items-center justify-center gap-2 md:gap-3">
+              <span className="text-hackathon-success font-semibold">48-HOUR HACKATHON</span>
+              <span className="hidden md:inline-block h-1 w-1 rounded-full bg-hackathon-muted"></span>
+              <span className="flex items-center gap-1">
+                <MapPin size={14} className="text-hackathon-accent" />
+                BANGALORE & CHANDIGARH
+              </span>
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-barlow font-extrabold mb-4 tracking-tight">
-            <AnimatedText
-              text="HACKSKYE"
-              variant="gradient"
-              as="span"
-              className="block"
-            />
-            <span className="block mt-1 text-glow text-white">HACKATHON 2026</span>
-          </h1>
+          {/* Heading */}
+          <div className="space-y-2 mb-6 animate-slideUp" style={{ animationDelay: '200ms' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-barlow font-extrabold tracking-tight">
+              <AnimatedText
+                text="HACKSKYE"
+                variant="gradient"
+                as="span"
+                className="block leading-tight"
+                delay={300}
+              />
+              <span className="block mt-1 text-white leading-tight">HACKATHON 2026</span>
+            </h1>
+          </div>
 
-          <p className="text-base md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
+          {/* Description */}
+          <p className="text-base md:text-xl text-hackathon-muted mb-8 md:mb-10 max-w-2xl mx-auto animate-slideUp" style={{ animationDelay: '400ms' }}>
             Join India's most futuristic hackathon where innovation meets technology. 
             Build, collaborate, and shape the future of tech in just 48 hours.
           </p>
 
-          <CountdownTimer targetDate={targetDate} className="mb-8 md:mb-10" />
+          {/* Countdown */}
+          <div className="animate-slideUp" style={{ animationDelay: '500ms' }}>
+            <CountdownTimer targetDate={targetDate} className="mb-10 md:mb-12" />
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-16 animate-slideUp" style={{ animationDelay: '600ms' }}>
             <GlowingButton
               variant="secondary"
               size="lg"
               className="sm:w-auto w-full"
               icon={<Rocket size={20} />}
               href="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
+              animated
             >
               REGISTER NOW
             </GlowingButton>
@@ -65,31 +82,38 @@ const Hero = () => {
             </Link>
           </div>
 
-          <div className="mt-8 md:mt-12 px-4 py-4 rounded-xl bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20 inline-block">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-              <div className="text-center">
-                <div className="text-hackathon-blue font-barlow font-bold text-xl md:text-2xl text-glow">48h</div>
-                <div className="text-gray-400 text-sm">Duration</div>
-              </div>
-              <div className="text-center">
-                <div className="text-hackathon-blue font-barlow font-bold text-xl md:text-2xl text-glow">Hybrid</div>
-                <div className="text-gray-400 text-sm">Format</div>
-              </div>
-              <div className="text-center">
-                <div className="text-hackathon-blue font-barlow font-bold text-xl md:text-2xl text-glow">₹900</div>
-                <div className="text-gray-400 text-sm">Entry Fee</div>
-              </div>
-              <div className="text-center">
-                <div className="text-hackathon-green font-barlow font-bold text-xl md:text-2xl animate-pulse">5 Winners</div>
-                <div className="text-gray-400 text-sm">Selected</div>
-              </div>
+          {/* Key features */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto animate-slideUp" style={{ animationDelay: '700ms' }}>
+            <div className="glass-card p-4 md:p-5 flex flex-col items-center hover-scale hover-glow-primary">
+              <Calendar size={24} className="text-hackathon-secondary mb-2" />
+              <span className="text-hackathon-secondary font-barlow font-bold text-xl">48h</span>
+              <span className="text-xs text-hackathon-muted mt-1">Duration</span>
+            </div>
+            
+            <div className="glass-card p-4 md:p-5 flex flex-col items-center hover-scale hover-glow-secondary">
+              <MapPin size={24} className="text-hackathon-accent mb-2" />
+              <span className="text-hackathon-accent font-barlow font-bold text-xl">Hybrid</span>
+              <span className="text-xs text-hackathon-muted mt-1">Format</span>
+            </div>
+            
+            <div className="glass-card p-4 md:p-5 flex flex-col items-center hover-scale hover-glow-accent">
+              <DollarSign size={24} className="text-hackathon-primary mb-2" />
+              <span className="text-hackathon-primary font-barlow font-bold text-xl">₹900</span>
+              <span className="text-xs text-hackathon-muted mt-1">Entry Fee</span>
+            </div>
+            
+            <div className="glass-card p-4 md:p-5 flex flex-col items-center hover-scale hover-glow-success">
+              <Users size={24} className="text-hackathon-success mb-2" />
+              <span className="text-hackathon-success font-barlow font-bold text-xl">5 Winners</span>
+              <span className="text-xs text-hackathon-muted mt-1">Selected</span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Glow effect at the bottom of the hero */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-hackathon-purple/20 to-transparent"></div>
+      {/* Decorative elements */}
+      <div className="absolute -bottom-10 -left-20 w-64 h-64 rounded-full bg-hackathon-primary/10 blur-3xl pointer-events-none"></div>
+      <div className="absolute -top-10 -right-20 w-64 h-64 rounded-full bg-hackathon-secondary/10 blur-3xl pointer-events-none"></div>
     </section>
   );
 };

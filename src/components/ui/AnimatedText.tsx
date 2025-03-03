@@ -4,36 +4,41 @@ import { cn } from '@/lib/utils';
 
 interface AnimatedTextProps {
   text: string;
-  variant?: 'gradient' | 'glitch' | 'glow';
+  variant?: 'gradient' | 'glow' | 'shimmer' | 'gradient-secondary';
   as?: React.ElementType;
   className?: string;
+  delay?: number;
 }
 
 const AnimatedText = ({ 
   text, 
   variant = 'gradient', 
   as: Component = 'span',
-  className 
+  className,
+  delay = 0
 }: AnimatedTextProps) => {
+  
   const variantClasses = {
-    gradient: "text-transparent bg-clip-text bg-gradient-to-r from-hackathon-purple to-hackathon-blue animate-backgroundPan",
-    glitch: "text-white relative",
-    glow: "text-hackathon-green animate-text-glow"
+    gradient: "text-gradient animate-fadeIn",
+    'gradient-secondary': "text-gradient-secondary animate-fadeIn",
+    glow: "text-hackathon-secondary animate-text-glow",
+    shimmer: "text-white relative overflow-hidden animate-fadeIn"
   };
 
-  if (variant === 'glitch') {
+  if (variant === 'shimmer') {
     return (
-      <Component 
-        className={cn(variantClasses[variant], "glitch-effect", className)}
-        data-text={text}
-      >
+      <Component className={cn(variantClasses[variant], className)} style={{ animationDelay: `${delay}ms` }}>
         {text}
+        <span className="absolute inset-0 w-full h-full -z-10 opacity-30 bg-gradient-to-r from-transparent via-white to-transparent bg-[length:200%_100%] animate-shimmer"></span>
       </Component>
     );
   }
 
   return (
-    <Component className={cn(variantClasses[variant], className)}>
+    <Component 
+      className={cn(variantClasses[variant], className)} 
+      style={{ animationDelay: `${delay}ms` }}
+    >
       {text}
     </Component>
   );

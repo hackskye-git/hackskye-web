@@ -17,17 +17,17 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 275 91.8% 52.4%;
+    --primary: 258 100% 61%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 100% 50%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 187 100% 50%;
+    --secondary-foreground: 240 5.9% 10%;
 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 130 100% 54%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 329 100% 62%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -36,28 +36,25 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
     --radius: 0.5rem;
-
-    --sidebar-background: 240 10% 3.9%;
-    --sidebar-foreground: 0 0% 98%;
   }
 
   html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: #8A2BE2 #0D0D0D;
+    scrollbar-color: #5B3AFF #080E21;
   }
 
   body {
-    @apply bg-hackathon-black font-inter text-white;
+    @apply bg-hackathon-background font-inter text-white;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-barlow font-bold tracking-wide;
+    @apply font-barlow font-bold;
   }
 
   ::selection {
-    @apply bg-hackathon-purple/30 text-white;
+    @apply bg-hackathon-primary/30 text-white;
   }
 
   /* Custom scrollbar */
@@ -66,15 +63,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-hackathon-black;
+    @apply bg-hackathon-background;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-hackathon-purple rounded-full;
+    @apply bg-hackathon-primary rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-hackathon-blue;
+    @apply bg-hackathon-secondary;
   }
 
   /* Section styles */
@@ -84,107 +81,118 @@
 }
 
 @layer components {
-  .text-glow {
-    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-hackathon-primary via-hackathon-secondary to-hackathon-accent;
   }
 
-  .text-glow-sm {
-    text-shadow: 0 0 2px currentColor, 0 0 4px currentColor;
+  .text-gradient-secondary {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-hackathon-secondary to-hackathon-success;
   }
 
-  .text-glow-lg {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  .animated-border {
+    @apply relative;
+  }
+  
+  .animated-border::after {
+    @apply content-[''] absolute inset-0 rounded-lg pointer-events-none;
+    background: linear-gradient(60deg, #5B3AFF, #00DCFF, #FF3A8C, #5B3AFF);
+    background-size: 300% 300%;
+    animation: border-animation 4s linear infinite;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 2px;
   }
 
-  .bg-grid {
+  .glass-card {
+    @apply relative backdrop-blur-md rounded-xl border border-white/10 bg-white/5 overflow-hidden;
+  }
+
+  .subtle-grid {
     background-size: 30px 30px;
-    background-image: linear-gradient(to right, rgba(57, 255, 20, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(91, 58, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(91, 58, 255, 0.05) 1px, transparent 1px);
   }
 
-  .cyber-border {
-    @apply p-[1px] relative;
-    background: linear-gradient(90deg, #8A2BE2, #00FFFF, #39FF14, #8A2BE2);
-    background-size: 300% 100%;
-    animation: cyber-border-animation 4s linear infinite;
+  .shimmer-effect {
+    background: linear-gradient(90deg, 
+      rgba(255, 255, 255, 0) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      rgba(255, 255, 255, 0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
   }
 
-  .cyber-border-content {
-    @apply bg-hackathon-black rounded-md p-4 sm:p-6 z-10 relative;
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
   }
 
-  .glow-on-hover {
+  .hover-glow {
     @apply transition-all duration-300;
   }
 
-  .glow-on-hover:hover {
-    @apply shadow-neon-purple;
+  .hover-glow-primary:hover {
+    @apply shadow-glow-primary;
   }
 
-  .glow-blue-hover:hover {
-    @apply shadow-neon-blue;
+  .hover-glow-secondary:hover {
+    @apply shadow-glow-secondary;
   }
 
-  .glow-green-hover:hover {
-    @apply shadow-neon-green;
+  .hover-glow-accent:hover {
+    @apply shadow-glow-accent;
   }
 
-  .glass-panel {
-    @apply bg-hackathon-black/70 backdrop-blur-md border border-white/10 rounded-lg;
+  .hover-glow-success:hover {
+    @apply shadow-glow-success;
   }
 
-  .glitch-effect {
-    position: relative;
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 disabled:pointer-events-none;
   }
 
-  .glitch-effect::before,
-  .glitch-effect::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  .btn-primary {
+    @apply bg-hackathon-primary text-white hover:bg-opacity-90 focus:ring-hackathon-primary;
   }
 
-  .glitch-effect::before {
-    left: 2px;
-    text-shadow: -1px 0 #00FFFF;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
+  .btn-secondary {
+    @apply bg-hackathon-secondary text-hackathon-background hover:bg-opacity-90 focus:ring-hackathon-secondary;
   }
 
-  .glitch-effect::after {
-    left: -2px;
-    text-shadow: 1px 0 #39FF14;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 5s infinite linear alternate-reverse;
-    animation-delay: 0.15s;
+  .btn-accent {
+    @apply bg-hackathon-accent text-white hover:bg-opacity-90 focus:ring-hackathon-accent;
   }
 
-  .gradient-text {
-    @apply text-transparent bg-clip-text;
-    background-image: linear-gradient(to right, #8A2BE2, #00FFFF);
+  .btn-outline {
+    @apply bg-transparent border-2 hover:bg-opacity-10;
   }
 
-  .gradient-border {
-    @apply border-transparent relative;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    background-image: linear-gradient(to right, #8A2BE2, #00FFFF);
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
   }
 
-  .countdown-digit {
-    @apply bg-hackathon-dark-gray text-hackathon-green font-bold rounded-md h-16 w-16 md:h-24 md:w-24 flex items-center justify-center shadow-neon-green text-2xl md:text-4xl;
-    perspective: 500px;
+  .btn-md {
+    @apply px-4 py-2 text-base;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .countdown-box {
+    @apply bg-hackathon-card-dark rounded-lg p-4 flex flex-col items-center justify-center border border-hackathon-border shadow-glow-primary;
+  }
+
+  .countdown-number {
+    @apply text-3xl md:text-4xl font-bold text-hackathon-secondary;
   }
 
   .countdown-label {
-    @apply text-gray-400 text-xs md:text-sm font-medium mt-2;
+    @apply text-xs text-hackathon-muted mt-1;
   }
 }
 
-@keyframes cyber-border-animation {
+@keyframes border-animation {
   0% {
     background-position: 0% 50%;
   }
@@ -196,44 +204,11 @@
   }
 }
 
-@keyframes glitch-anim {
+@keyframes shimmer {
   0% {
-    clip: rect(16px, 9999px, 80px, 0);
-  }
-  20% {
-    clip: rect(44px, 9999px, 99px, 0);
-  }
-  40% {
-    clip: rect(89px, 9999px, 31px, 0);
-  }
-  60% {
-    clip: rect(74px, 9999px, 26px, 0);
-  }
-  80% {
-    clip: rect(67px, 9999px, 86px, 0);
+    background-position: -500px 0;
   }
   100% {
-    clip: rect(21px, 9999px, 54px, 0);
-  }
-}
-
-@keyframes glitch-anim2 {
-  0% {
-    clip: rect(40px, 9999px, 36px, 0);
-  }
-  20% {
-    clip: rect(94px, 9999px, 15px, 0);
-  }
-  40% {
-    clip: rect(6px, 9999px, 87px, 0);
-  }
-  60% {
-    clip: rect(54px, 9999px, 26px, 0);
-  }
-  80% {
-    clip: rect(57px, 9999px, 69px, 0);
-  }
-  100% {
-    clip: rect(81px, 9999px, 7px, 0);
+    background-position: 500px 0;
   }
 }

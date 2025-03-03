@@ -1,13 +1,15 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface GlowingButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'accent';
+  variant?: 'primary' | 'secondary' | 'accent' | 'success' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
   href?: string;
+  animated?: boolean;
 }
 
 const GlowingButton = ({ 
@@ -17,25 +19,34 @@ const GlowingButton = ({
   className, 
   icon,
   href,
+  animated = false,
   ...props 
 }: GlowingButtonProps) => {
+  
   const variantClasses = {
-    primary: "bg-hackathon-purple hover:bg-hackathon-purple/90 text-white shadow-neon-purple hover:shadow-[0_0_10px_#8A2BE2,_0_0_20px_#8A2BE2]",
-    secondary: "bg-hackathon-blue hover:bg-hackathon-blue/90 text-black font-medium shadow-neon-blue hover:shadow-[0_0_10px_#00FFFF,_0_0_20px_#00FFFF]",
-    accent: "bg-hackathon-green hover:bg-hackathon-green/90 text-black font-medium shadow-neon-green hover:shadow-[0_0_10px_#39FF14,_0_0_20px_#39FF14]"
+    primary: "bg-hackathon-primary hover:bg-opacity-90 text-white shadow-sm hover:shadow-glow-primary",
+    secondary: "bg-hackathon-secondary hover:bg-opacity-90 text-hackathon-background font-medium shadow-sm hover:shadow-glow-secondary",
+    accent: "bg-hackathon-accent hover:bg-opacity-90 text-white shadow-sm hover:shadow-glow-accent",
+    success: "bg-hackathon-success hover:bg-opacity-90 text-hackathon-background font-medium shadow-sm hover:shadow-glow-success",
+    outline: "bg-transparent border-2 border-hackathon-primary text-white hover:bg-hackathon-primary/10"
   };
 
   const sizeClasses = {
     sm: "py-1.5 px-3 text-sm",
     md: "py-2 px-4 text-base",
-    lg: "py-3 px-6 text-lg"
+    lg: "py-3 px-6 text-base md:text-lg"
   };
 
   const baseClasses = cn(
-    "rounded-md font-barlow font-bold relative transition-all duration-300 active:translate-y-1 flex items-center justify-center gap-2",
+    "rounded-lg font-barlow font-semibold relative transition-all duration-300 active:translate-y-0.5 flex items-center justify-center gap-2",
     variantClasses[variant],
     sizeClasses[size],
+    animated && "overflow-hidden",
     className
+  );
+
+  const animatedBackground = animated && (
+    <span className="absolute inset-0 w-full h-full -z-10 opacity-20 bg-gradient-to-r from-transparent via-white to-transparent bg-[length:200%_100%] animate-shimmer"></span>
   );
 
   if (href) {
@@ -46,9 +57,9 @@ const GlowingButton = ({
         target="_blank"
         rel="noopener noreferrer"
       >
+        {animatedBackground}
         {icon && <span className="inline-flex items-center">{icon}</span>}
         <span>{children}</span>
-        <span className="absolute inset-0 rounded-md bg-white/10 opacity-0 transition-opacity hover:opacity-100"></span>
       </a>
     );
   }
@@ -58,9 +69,9 @@ const GlowingButton = ({
       className={baseClasses}
       {...props}
     >
+      {animatedBackground}
       {icon && <span className="inline-flex items-center">{icon}</span>}
       <span>{children}</span>
-      <span className="absolute inset-0 rounded-md bg-white/10 opacity-0 transition-opacity hover:opacity-100"></span>
     </button>
   );
 };
