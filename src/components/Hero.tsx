@@ -12,21 +12,21 @@ const Hero = () => {
   const targetDate = new Date("June 6, 2026 09:00:00");
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 pb-16">
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-16 pb-16 md:pt-20 px-4">
       <ParticleBackground />
       
       {/* Grid Background */}
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      <div className="relative z-10 container mx-auto text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20">
-            <span className="text-sm font-medium text-gray-300">
+          <div className="inline-block mb-4 md:mb-6 px-3 py-1.5 rounded-full bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20">
+            <span className="text-xs md:text-sm font-medium text-gray-300">
               <span className="text-hackathon-green font-bold">48-HOUR</span> CODING MARATHON • BANGALORE & CHANDIGARH, INDIA
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-barlow font-extrabold mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-barlow font-extrabold mb-4 tracking-tight">
             <AnimatedText
               text="HACKSKYE"
               variant="gradient"
@@ -36,12 +36,12 @@ const Hero = () => {
             <span className="block mt-1 text-glow text-white">HACKATHON 2026</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
             Join India's most futuristic hackathon where innovation meets technology. 
             Build, collaborate, and shape the future of tech in just 48 hours.
           </p>
 
-          <CountdownTimer targetDate={targetDate} className="mb-10" />
+          <CountdownTimer targetDate={targetDate} className="mb-8 md:mb-10" />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <GlowingButton
@@ -65,8 +65,8 @@ const Hero = () => {
             </Link>
           </div>
 
-          <div className="mt-12 px-6 py-4 rounded-xl bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20 inline-block">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="mt-8 md:mt-12 px-4 py-4 rounded-xl bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20 inline-block">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               <div className="text-center">
                 <div className="text-hackathon-blue font-barlow font-bold text-xl md:text-2xl text-glow">48h</div>
                 <div className="text-gray-400 text-sm">Duration</div>

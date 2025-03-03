@@ -8,88 +8,54 @@ interface CountdownTimerProps {
 }
 
 const CountdownTimer = ({ targetDate, className }: CountdownTimerProps) => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-  
-  const [flipping, setFlipping] = useState({
-    days: false,
-    hours: false,
-    minutes: false,
-    seconds: false
-  });
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = targetDate.getTime() - new Date().getTime();
-      
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((difference / 1000 / 60) % 60);
-        const seconds = Math.floor((difference / 1000) % 60);
-        
-        // Set flipping state for changing digits
-        if (timeLeft.seconds !== seconds) setFlipping(prev => ({ ...prev, seconds: true }));
-        if (timeLeft.minutes !== minutes) setFlipping(prev => ({ ...prev, minutes: true }));
-        if (timeLeft.hours !== hours) setFlipping(prev => ({ ...prev, hours: true }));
-        if (timeLeft.days !== days) setFlipping(prev => ({ ...prev, days: true }));
-        
-        setTimeLeft({ days, hours, minutes, seconds });
-        
-        // Reset flipping state after animation
-        setTimeout(() => {
-          setFlipping({
-            days: false,
-            hours: false,
-            minutes: false,
-            seconds: false
-          });
-        }, 500);
-      }
-    };
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
 
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-    return () => clearInterval(timer);
-  }, [targetDate, timeLeft]);
+      setDays(d);
+      setHours(h);
+      setMinutes(m);
+      setSeconds(s);
+    }, 1000);
 
-  const padWithZero = (num: number) => {
-    return num.toString().padStart(2, '0');
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  const formatTime = (time: number) => {
+    return time < 10 ? `0${time}` : `${time}`;
   };
 
+  // Array of time units for rendering
+  const timeUnits = [
+    { value: days, label: 'Days' },
+    { value: hours, label: 'Hours' },
+    { value: minutes, label: 'Minutes' },
+    { value: seconds, label: 'Seconds' }
+  ];
+
   return (
-    <div className={cn("flex flex-col items-center", className)}>
-      <div className="flex space-x-4 md:space-x-6">
-        <div className="flex flex-col items-center">
-          <div className={cn("countdown-digit", flipping.days && "animate-countdownFlip")}>
-            {padWithZero(timeLeft.days)}
+    <div className={cn("flex flex-wrap justify-center gap-3 sm:gap-5", className)}>
+      {timeUnits.map(({ value, label }, index) => (
+        <div key={label} className="flex flex-col items-center">
+          <div className="countdown-digit animate-pulse">
+            {formatTime(value)}
           </div>
-          <span className="countdown-label">DAYS</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className={cn("countdown-digit", flipping.hours && "animate-countdownFlip")}>
-            {padWithZero(timeLeft.hours)}
+          <div className="countdown-label">
+            {label}
           </div>
-          <span className="countdown-label">HOURS</span>
         </div>
-        <div className="flex flex-col items-center">
-          <div className={cn("countdown-digit", flipping.minutes && "animate-countdownFlip")}>
-            {padWithZero(timeLeft.minutes)}
-          </div>
-          <span className="countdown-label">MINUTES</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className={cn("countdown-digit", flipping.seconds && "animate-countdownFlip")}>
-            {padWithZero(timeLeft.seconds)}
-          </div>
-          <span className="countdown-label">SECONDS</span>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

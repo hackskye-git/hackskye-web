@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 px-4 md:py-4 md:px-6",
         isScrolled 
           ? "bg-hackathon-black/80 backdrop-blur-md border-b border-hackathon-purple/20" 
           : "bg-transparent"
@@ -40,13 +40,13 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <span className="text-2xl font-barlow font-extrabold text-hackathon-blue text-glow">
+          <span className="text-xl md:text-2xl font-barlow font-extrabold text-hackathon-blue text-glow">
             HACK<span className="text-hackathon-purple">SKYE</span>
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-5">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-5">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -70,8 +70,9 @@ const Navbar = () => {
 
         {/* Mobile Navigation Button */}
         <button
-          className="md:hidden text-white hover:text-hackathon-blue transition-colors"
+          className="md:hidden text-white hover:text-hackathon-blue transition-colors focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -84,23 +85,24 @@ const Navbar = () => {
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <nav className="flex flex-col items-center pt-12 pb-6 px-6 space-y-6">
+        <nav className="flex flex-col items-center pt-10 pb-6 px-6 space-y-5">
           {navItems.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className="text-gray-200 hover:text-hackathon-blue font-barlow text-xl tracking-wide w-full text-center py-2 border-b border-gray-800"
+              className="text-gray-200 hover:text-hackathon-blue font-barlow text-lg tracking-wide w-full text-center py-2 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.name}
             </Link>
           ))}
-          <div className="pt-4">
+          <div className="pt-6">
             <GlowingButton 
               variant="secondary" 
               size="lg" 
               onClick={() => setMobileMenuOpen(false)}
               href="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
+              className="w-full"
             >
               REGISTER NOW
             </GlowingButton>

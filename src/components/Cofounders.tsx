@@ -35,28 +35,45 @@ const CofounderCard = ({
         <img 
           src={image}
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+          loading="lazy"
         />
       </div>
       
       <div className="p-6">
-        <h3 className="text-2xl font-barlow font-bold text-white mb-1">{name}</h3>
-        <p className="text-hackathon-blue font-medium mb-4">{role}</p>
-        <p className="text-gray-400 mb-6">{bio}</p>
+        <h3 className="text-xl sm:text-2xl font-barlow font-bold text-white mb-1">{name}</h3>
+        <p className="text-hackathon-blue font-medium mb-3 sm:mb-4">{role}</p>
+        <p className="text-gray-400 mb-5 sm:mb-6 text-sm sm:text-base">{bio}</p>
         
         <div className="flex items-center gap-3">
           {github && (
-            <a href={github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-hackathon-purple transition-colors">
+            <a 
+              href={github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-400 hover:text-hackathon-purple transition-colors p-2 rounded-full hover:bg-hackathon-purple/10"
+              aria-label={`${name}'s GitHub`}
+            >
               <Github size={20} />
             </a>
           )}
           {linkedin && (
-            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-hackathon-blue transition-colors">
+            <a 
+              href={linkedin} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-400 hover:text-hackathon-blue transition-colors p-2 rounded-full hover:bg-hackathon-blue/10"
+              aria-label={`${name}'s LinkedIn`}
+            >
               <Linkedin size={20} />
             </a>
           )}
           {email && (
-            <a href={`mailto:${email}`} className="text-gray-400 hover:text-hackathon-green transition-colors">
+            <a 
+              href={`mailto:${email}`} 
+              className="text-gray-400 hover:text-hackathon-green transition-colors p-2 rounded-full hover:bg-hackathon-green/10"
+              aria-label={`Email ${name}`}
+            >
               <Mail size={20} />
             </a>
           )}
@@ -68,29 +85,29 @@ const CofounderCard = ({
 
 const Cofounders = () => {
   return (
-    <section id="cofounders" className="relative overflow-hidden bg-hackathon-black py-24">
+    <section id="cofounders" className="relative overflow-hidden bg-hackathon-black py-16 sm:py-24 px-4">
       {/* Diagonal dividers */}
       <div className="absolute top-0 left-0 w-full h-16 bg-hackathon-dark-gray/50 transform -skew-y-2 origin-top-left"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div className="inline-block mb-3 px-3 py-1 rounded-full bg-hackathon-blue/10 backdrop-blur-sm border border-hackathon-blue/20">
-            <span className="text-sm font-medium text-hackathon-green">THE TEAM</span>
+            <span className="text-xs sm:text-sm font-medium text-hackathon-green">THE TEAM</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-barlow font-bold mb-6">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-barlow font-bold mb-4 sm:mb-6">
             <AnimatedText
               text="Meet Our Cofounders"
               variant="gradient"
               as="span"
             />
           </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto text-lg">
+          <p className="text-gray-300 max-w-3xl mx-auto text-sm sm:text-lg">
             The visionaries behind Hackskye who are passionate about fostering innovation 
             and building India's most impactful hackathon community.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <CofounderCard 
             name="Rishul Chanana"
             role="Co-Founder & CEO"

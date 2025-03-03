@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-hackathon-black overflow-hidden relative">
       <ParticleBackground />
-      <main>
+      <main className="w-full">
         <Hero />
         <About />
       </main>
