@@ -1,16 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import GlowingButton from './ui/GlowingButton';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Judges", href: "#judges" },
-  { name: "Schedule", href: "#schedule" },
-  { name: "Sponsors", href: "#sponsors" },
-  { name: "Register", href: "#register" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Judges", href: "/judges" },
+  { name: "Schedule", href: "/schedule" },
+  { name: "Sponsors", href: "/sponsors" },
+  { name: "Register", href: "/register" },
+  { name: "Sponsor Us", href: "/sponsor-us" },
+  { name: "Past Events", href: "/past-events" },
 ];
 
 const Navbar = () => {
@@ -36,27 +39,31 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <a href="#home" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <span className="text-2xl font-barlow font-extrabold text-hackathon-blue text-glow">
             HACK<span className="text-hackathon-purple">SKYE</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-5">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
+              to={item.href}
               className="text-gray-300 hover:text-hackathon-blue transition-colors font-barlow font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-hackathon-blue after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden md:block">
-          <GlowingButton variant="secondary" size="md">
+          <GlowingButton 
+            variant="secondary" 
+            size="md"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
+          >
             REGISTER NOW
           </GlowingButton>
         </div>
@@ -79,17 +86,22 @@ const Navbar = () => {
       >
         <nav className="flex flex-col items-center pt-12 pb-6 px-6 space-y-6">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
+              to={item.href}
               className="text-gray-200 hover:text-hackathon-blue font-barlow text-xl tracking-wide w-full text-center py-2 border-b border-gray-800"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.name}
-            </a>
+            </Link>
           ))}
           <div className="pt-4">
-            <GlowingButton variant="secondary" size="lg" onClick={() => setMobileMenuOpen(false)}>
+            <GlowingButton 
+              variant="secondary" 
+              size="lg" 
+              onClick={() => setMobileMenuOpen(false)}
+              href="https://docs.google.com/forms/d/e/1FAIpQLScq9c3bFHGk3l8sq3ugQuw5JZTik3He7vYNKVZjlZrMhoNG3A/viewform?usp=header"
+            >
               REGISTER NOW
             </GlowingButton>
           </div>

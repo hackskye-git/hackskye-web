@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CountdownTimer from './ui/CountdownTimer';
 import GlowingButton from './ui/GlowingButton';
 import AnimatedText from './ui/AnimatedText';
@@ -52,14 +53,16 @@ const Hero = () => {
             >
               REGISTER NOW
             </GlowingButton>
-            <GlowingButton
-              variant="primary"
-              size="lg"
-              className="sm:w-auto w-full"
-              icon={<DollarSign size={20} />}
-            >
-              SPONSOR US
-            </GlowingButton>
+            <Link to="/sponsor-us">
+              <GlowingButton
+                variant="primary"
+                size="lg"
+                className="sm:w-auto w-full"
+                icon={<DollarSign size={20} />}
+              >
+                SPONSOR US
+              </GlowingButton>
+            </Link>
           </div>
 
           <div className="mt-12 px-6 py-4 rounded-xl bg-hackathon-dark-gray/50 backdrop-blur-sm border border-hackathon-purple/20 inline-block">
