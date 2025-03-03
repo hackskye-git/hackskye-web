@@ -16,6 +16,8 @@ import PastEventsPage from "./pages/PastEventsPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+// Determine the base URL based on environment
+const basename = import.meta.env.DEV ? '/' : '/hackskye';
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -23,7 +25,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <div className="min-h-screen bg-hackathon-black overflow-hidden relative">
           <Navbar />
           <Routes>
@@ -35,8 +37,6 @@ const App = () => (
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/sponsor-us" element={<SponsorUsPage />} />
             <Route path="/past-events" element={<PastEventsPage />} />
-            {/* For GitHub Pages compatibility */}
-            <Route path="/hackskye/*" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
