@@ -39,14 +39,14 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 px-4 md:py-4 md:px-6",
         isScrolled 
-          ? "bg-hackathon-background/80 backdrop-blur-md border-b border-hackathon-border" 
+          ? "bg-hackathon-background/90 backdrop-blur-md border-b border-white/10" 
           : "bg-transparent"
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <span className="text-xl md:text-2xl font-barlow font-extrabold text-gradient">
-            HACK<span className="text-white">SKYE</span>
+          <span className="text-xl md:text-2xl font-barlow font-extrabold text-white">
+            HACK<span className="text-hackathon-secondary">SKYE</span>
           </span>
         </Link>
 

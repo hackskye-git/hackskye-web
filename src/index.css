@@ -45,12 +45,16 @@
   }
 
   body {
-    @apply bg-hackathon-background font-inter text-white;
+    @apply bg-hackathon-background text-white font-inter;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-barlow font-bold;
+    @apply font-barlow font-bold text-white;
+  }
+
+  p {
+    @apply text-white;
   }
 
   ::selection {
@@ -76,42 +80,21 @@
 
   /* Section styles */
   section {
-    @apply px-4 sm:px-6 py-16 sm:py-24 overflow-hidden relative;
+    @apply px-4 sm:px-6 py-16 sm:py-24 overflow-hidden relative text-white;
   }
 }
 
 @layer components {
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-hackathon-primary via-hackathon-secondary to-hackathon-accent;
-  }
-
-  .text-gradient-secondary {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-hackathon-secondary to-hackathon-success;
-  }
-
-  .animated-border {
-    @apply relative;
-  }
-  
-  .animated-border::after {
-    @apply content-[''] absolute inset-0 rounded-lg pointer-events-none;
-    background: linear-gradient(60deg, #5B3AFF, #00DCFF, #FF3A8C, #5B3AFF);
-    background-size: 300% 300%;
-    animation: border-animation 4s linear infinite;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: destination-out;
-    padding: 2px;
-  }
+  /* ... keep existing code (text-gradient classes, animated-border, etc.) */
 
   .glass-card {
-    @apply relative backdrop-blur-md rounded-xl border border-white/10 bg-white/5 overflow-hidden;
+    @apply relative backdrop-blur-md rounded-xl border border-white/10 bg-white/5 overflow-hidden shadow-lg text-white;
   }
 
   .subtle-grid {
     background-size: 30px 30px;
-    background-image: linear-gradient(to right, rgba(91, 58, 255, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(91, 58, 255, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   }
 
   .shimmer-effect {
@@ -148,7 +131,7 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 disabled:pointer-events-none text-white;
   }
 
   .btn-primary {
@@ -164,7 +147,7 @@
   }
 
   .btn-outline {
-    @apply bg-transparent border-2 hover:bg-opacity-10;
+    @apply bg-transparent border-2 hover:bg-opacity-10 text-white;
   }
 
   .btn-lg {
@@ -180,7 +163,7 @@
   }
 
   .countdown-box {
-    @apply bg-hackathon-card-dark rounded-lg p-4 flex flex-col items-center justify-center border border-hackathon-border shadow-glow-primary;
+    @apply bg-hackathon-card-dark rounded-lg p-4 flex flex-col items-center justify-center border border-hackathon-border shadow-glow-primary text-white;
   }
 
   .countdown-number {

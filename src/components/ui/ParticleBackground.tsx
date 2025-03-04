@@ -116,7 +116,7 @@ const ParticleBackground = ({
           
           if (distance < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(91, 58, 255, ${0.05 * (1 - distance / 100)})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 * (1 - distance / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
@@ -140,7 +140,7 @@ const ParticleBackground = ({
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 z-0 pointer-events-none ${className}`}
+      className={`fixed inset-0 z-0 pointer-events-none ${className || ''}`}
     />
   );
 };

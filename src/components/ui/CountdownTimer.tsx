@@ -37,7 +37,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate, className }
   }, [targetDate]);
 
   return (
-    <div className={`${className}`}>
+    <div className={`${className} text-white`}>
       <h3 className="text-hackathon-secondary font-medium mb-4 text-center text-sm md:text-base">
         Registration closes in:
       </h3>

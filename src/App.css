@@ -4,10 +4,21 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: white;
 }
 
 @media (max-width: 768px) {
   #root {
     padding: 1rem;
   }
+}
+
+/* Ensure text visibility */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  color: white;
+}
+
+/* Add some default text shadows to improve readability */
+h1, h2, h3 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }

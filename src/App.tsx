@@ -16,32 +16,36 @@ import PastEventsPage from "./pages/PastEventsPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+// Create QueryClient
+const queryClient = new QueryClient();
+
 // Determine the base URL based on environment
 const basename = import.meta.env.DEV ? '/' : '/hackskye';
-const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
       <BrowserRouter basename={basename}>
-        <div className="min-h-screen bg-hackathon-black overflow-hidden relative">
+        <div className="min-h-screen bg-hackathon-background text-white">
           <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/judges" element={<JudgesPage />} />
-            <Route path="/schedule" element={<SchedulePage />} />
-            <Route path="/sponsors" element={<SponsorsPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/sponsor-us" element={<SponsorUsPage />} />
-            <Route path="/past-events" element={<PastEventsPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <main className="relative z-10">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/judges" element={<JudgesPage />} />
+              <Route path="/schedule" element={<SchedulePage />} />
+              <Route path="/sponsors" element={<SponsorsPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/sponsor-us" element={<SponsorUsPage />} />
+              <Route path="/past-events" element={<PastEventsPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
           <Footer />
         </div>
       </BrowserRouter>
+      <Toaster />
+      <Sonner />
     </TooltipProvider>
   </QueryClientProvider>
 );

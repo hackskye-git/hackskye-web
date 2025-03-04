@@ -19,9 +19,9 @@ const AnimatedText = ({
 }: AnimatedTextProps) => {
   
   const variantClasses = {
-    gradient: "text-gradient animate-fadeIn",
-    'gradient-secondary': "text-gradient-secondary animate-fadeIn",
-    glow: "text-hackathon-secondary animate-text-glow",
+    gradient: "text-gradient animate-fadeIn text-white",
+    'gradient-secondary': "text-gradient-secondary animate-fadeIn text-white",
+    glow: "text-hackathon-secondary animate-text-glow text-white",
     shimmer: "text-white relative overflow-hidden animate-fadeIn"
   };
 
