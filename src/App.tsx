@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -28,7 +28,7 @@ const App = () => (
       <BrowserRouter basename={basename}>
         <div className="min-h-screen bg-hackathon-background text-white">
           <Navbar />
-          <main className="relative z-10">
+          <div className="pt-16 w-full"> {/* Added padding-top to account for fixed navbar */}
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -40,7 +40,7 @@ const App = () => (
               <Route path="/past-events" element={<PastEventsPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </main>
+          </div>
           <Footer />
         </div>
       </BrowserRouter>
